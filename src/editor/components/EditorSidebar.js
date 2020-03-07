@@ -9,7 +9,6 @@ import {
     faCircle
 } from "@fortawesome/free-solid-svg-icons";
 import EditorButton from './EditorButton';
-import App from '../../App';
 import * as constants from '../constants';
 
 class EditorSideBar extends Component {
@@ -40,6 +39,7 @@ const sideBarContainerStyle = {
     background: "grey",
     border: "3px solid green",
     float: "left",
+    position: "fixed",
 };
 
 

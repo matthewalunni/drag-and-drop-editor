@@ -15,9 +15,19 @@ class EditingPage extends Component {
             console.log(this.props.page);
             let page = [];
             for (let index = 0; index < this.props.page.length; index++) {
-                //TODO - some logic here
-                //page.push(some component)
-                console.log(this.props.page[index]);
+                let section = this.props.page[index];
+                switch (section.type) {
+                    case "heading": {
+                        console.log("Heading!!!");
+                        page.push(<h1 key={index} style={section.style[0]}>{section.text}</h1>)
+                        break;
+                    }
+                    default: {
+                        console.log("Not a heading!");
+                        break;
+                    }
+                }
+
             }
 
             return page;

@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import EditorSideBar from './components/EditorSidebar';
 import EditingPage from '../editor/components/EditingPage';
 
+
+
 class Editor extends Component {
     constructor(props) {
         super(props);
         console.log("Constructor: ", this.props)
         this.onClick.bind(this.onClick);
         this.state = {
-            page: [],
+            page: props.page,
         }
     }
 
