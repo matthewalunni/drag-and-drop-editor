@@ -18,7 +18,6 @@ class EditingPage extends Component {
                 let section = this.props.page[index];
                 switch (section.type) {
                     case "heading": {
-                        console.log("Heading!!!");
                         page.push(<h1 key={index} style={section.style[0]}>{section.text}</h1>)
                         break;
                     }
