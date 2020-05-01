@@ -1,79 +1,41 @@
 import React, { Component } from 'react';
-import EditorSideBar from './components/EditorSidebar';
-import EditingPage from '../editor/components/EditingPage';
+import EditorSideBar from './sidebar/EditorSidebar';
+import EditingPage from '../editor/EditingPage';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import EditorBackend from './EditorBackend';
 
-
+var backend = new EditorBackend();
 
 class Editor extends Component {
     constructor(props) {
         super(props);
-        console.log("Constructor: ", this.props)
-        this.onClick.bind(this.onClick);
         this.state = {
-            page: props.page,
+            page: backend.all(),
         }
     }
 
-    onClick(name) {
-        console.log(name);
-        switch (name) {
-            case "Heading": {
-                console.log(this.state)
-
-                break;
-            }
-            case "Image": {
-                
-                console.log(name);
-                //this.state.page.concat(<p>img</p>)
-               break;
-            }
-            case "Button": {
-                
-                console.log(name);
-                //this.state.page.concat(<p>btn</p>)
-                break;
-            }
-            case "Dividers": {
-                
-                console.log(name);
-                //this.state.page.concat(<p>div</p>)
-                break;
-            }
-            case "Spacer": {
-                
-                console.log(name);
-                //this.state.page.concat(<p>space</p>)
-                break;
-            }
-            case "Size": {
-                
-                console.log(name);
-                //this.state.page.concat(<p>size</p>)
-                break;
-            }
-            case "Icon": {
-                console.log(name);
-                //this.state.page.concat(<p>icon</p>)
-                break;
-            }
-            case "Video": {
-                //this.state.page.concat(<p>vid</p>)
-                console.log(name);
-                break;
-            }
-            default:
-                break;
-        }
-
+    sideBarButton_OnClick = (name) => {
+        backend.add(name);
+        this.setState({page: backend.pages});
     }
 
     render() {
         return (
-            <>
-                <EditorSideBar onPush={this.onClick} page={this.props.page} />
-                <EditingPage page={this.state.page} />
-            </>
+            <Container className="page-container">
+                <Row>
+                    <Col className="sidebar-container">
+                        <EditorSideBar sideBarButton_OnClick={this.sideBarButton_OnClick} page={this.props.page} />
+                    </Col>
+                    <Col className="editing-page">
+                        <EditingPage page={this.state.page} />
+                    </Col>
+                </Row>
+            </Container>
+
+
+
         );
     }
 }

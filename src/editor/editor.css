@@ -1,0 +1,18 @@
+.page-container {
+  width: 100% !important;
+  margin: 0;
+  max-width: 100%;
+}
+
+
+
+.editing-page {
+  display: block;
+  justify-content: flex-end;
+  align-items: center;
+  margin-left: 30vw;
+  width: 70vw;
+  max-width: 70vw!important;
+  padding: 0;
+}
+

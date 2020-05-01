@@ -1,0 +1,77 @@
+.sidebar-container {
+  text-align: center;
+  margin: 0;
+  width: 30vw;
+  height: 100vh;
+  background: #2d3436;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: grid;
+  position: fixed;
+  overflow: hidden;
+}
+
+.sidebar-container:hover {
+  overflow-y: scroll;
+}
+
+.sidebar-button {
+  height: 100%;
+  width: 28vw;
+  margin: 1vh;
+  padding: 5%;
+  font-size: medium;
+  background-color: #2d3436;
+  border-top: #2d3436 0px hidden;
+  border-left: #2d3436 0px hidden;
+  border-right: #2d3436 0px hidden;
+  border-bottom: 1px solid #636e72;
+}
+
+.sidebar-button:hover {
+  background-color: #6c5ce7;
+}
+
+.sidebar-button:focus {
+  background-color: #a29bfe !important;
+  color: #2d3436 !important;
+  font-weight: bold;
+  border: hidden;
+}
+
+.sidebar-button:active {
+    background-color: #a29bfe !important;
+    color: #2d3436 !important;
+    font-weight: bold;
+    border: hidden;
+}
+
+.sidebar-button:visited {
+    background-color: #a29bfe !important;
+    color: #2d3436 !important;
+    font-weight: bold;
+    border: hidden;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px #636e72;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #b2bec3;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #636e72;
+}
