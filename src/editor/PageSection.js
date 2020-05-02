@@ -22,8 +22,19 @@ import Toast from 'react-bootstrap/Toast';
 class PageSection extends Component {
     constructor(props) {
         super(props);
-        console.log(this.props)
+        this.state = {
+            border: undefined,
+        }
     }
+
+    // componentDidMount() {
+    //     if (this.props.active === this.props.index || this.state.border === "1px solid green") {
+    //         this.setState({ border: "1px solid green" })
+    //     }
+    //     else {
+    //         this.setState({border: "hidden"});
+    //     }
+    // }
 
     /**
      * This method processes the columns in a row and returns their react component/HTML representation.
@@ -42,7 +53,7 @@ class PageSection extends Component {
     }
 
     /**
-     * This method creates am embedded react youtube video component
+     * This method creates am embedded react Youtube video component
      * @param {string} url the url of the Youtube video
      * @param {string} height the height of the Youtube Video
      * @param {string} width the width of the Youtube Video
@@ -79,7 +90,10 @@ class PageSection extends Component {
             />)
     }
 
-
+    /**
+     * This method renders a page section onto the screen based on its type in the JSON file.
+     * @param {string} type 
+     */
     returnPageSection(type) {
         switch (type) {
             case "Navigation": {
@@ -349,10 +363,21 @@ class PageSection extends Component {
 
     }
 
-
     render() {
+        // this clicked method here is used to height the selected page section
+        const isClicked = this.props.clicked;
+        // this surrounds the component in a highlight to indicate that it is currently 
+        // being edited buy the user
+        var classList = isClicked ? "page-section clicked" : "page-section";
         return (
-            <div key={this.props.index} className='page-section'>
+            
+            <div
+                key={this.props.index}
+                className={classList}
+                style={{ border: this.state.border }}
+                onClick={() => {
+                    this.props.onClick(this.props.index);
+                }}>
                 {this.returnPageSection(this.props.type)}
             </div>
         );

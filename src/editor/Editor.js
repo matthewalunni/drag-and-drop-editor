@@ -13,6 +13,7 @@ class Editor extends Component {
         super(props);
         this.state = {
             page: backend.all(),
+            activePageSection: -1,
         }
     }
 
@@ -20,6 +21,13 @@ class Editor extends Component {
         backend.add(name);
         this.setState({page: backend.pages});
     }
+
+    pageSection_OnClick = (index) => {
+        console.log(this.state, index)
+        this.setState({activePageSection: index});
+        console.log(this.state, index)
+    }
+
 
     render() {
         return (
@@ -29,7 +37,7 @@ class Editor extends Component {
                         <EditorSideBar sideBarButton_OnClick={this.sideBarButton_OnClick} page={this.props.page} />
                     </Col>
                     <Col className="editing-page">
-                        <EditingPage page={this.state.page} />
+                        <EditingPage pageSection_OnClick={this.pageSection_OnClick} active={this.state.activePageSection} page={this.state.page} />
                     </Col>
                 </Row>
             </Container>

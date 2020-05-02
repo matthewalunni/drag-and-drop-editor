@@ -6,9 +6,14 @@ class EditingPage extends Component {
         super(props);
         this.state = {
             page: this.props.page,
+            active: -1,
         }
     }
 
+    handleActiveElement = (id) => {
+        console.log(id)
+        this.setState({ active: id });
+    }
 
     returnPage() {
         try {
@@ -19,6 +24,8 @@ class EditingPage extends Component {
                 page.push(
                     <>
                         <PageSection
+                            clicked={this.state.active === index}
+                            onClick={this.handleActiveElement}
                             index={index}
                             type={jsonEntry.type}
                             key={index}
