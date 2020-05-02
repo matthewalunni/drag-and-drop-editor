@@ -54,11 +54,6 @@ class EditorSideBar extends Component {
                     Video
                     </Button>
                 <Button
-                    onClick={() => { this.props.sideBarButton_OnClick("BreadCrumb") }}
-                    className="sidebar-button">
-                    BreadCrumb
-                    </Button>
-                <Button
                     onClick={() => { this.props.sideBarButton_OnClick("ButtonGroup") }}
                     className="sidebar-button">
                     ButtonGroup
@@ -89,11 +84,6 @@ class EditorSideBar extends Component {
                     Pagination
                     </Button>
                 <Button
-                    onClick={() => { this.props.sideBarButton_OnClick("Popover") }}
-                    className="sidebar-button">
-                    Popover
-                    </Button>
-                <Button
                     onClick={() => { this.props.sideBarButton_OnClick("Table") }}
                     className="sidebar-button">
                     Table
@@ -112,20 +102,5 @@ class EditorSideBar extends Component {
         );
     };
 }
-
-
-const sideBarContainerStyle = {
-    // marginLeft: (constants.SideBarWidthAsInt) + "vh",
-    // marginRight: (constants.SideBarWidthAsInt) + "vh",
-    // marginTop: "2vh",
-    // margin: "auto",
-    // width: constants.EditorSideBarWidth,
-    // height: "100vh",
-    // background: "grey",
-    // border: "3px solid green",
-    // float: "left",
-    // position: "fixed",
-};
-
 
 export default EditorSideBar

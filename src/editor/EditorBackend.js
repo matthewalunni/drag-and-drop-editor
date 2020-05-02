@@ -8,15 +8,14 @@ class EditorBackend {
     }
 
     add(name) {
-        console.log(name + " has been clck");
         switch (name) {
             case "Navigation": {
                 this.pages.unshift({
                     type: "Navigation",
                     style:
-                        {
+                    {
 
-                        },
+                    },
                 });
                 break;
             }
@@ -25,9 +24,9 @@ class EditorBackend {
                     type: "Heading",
                     text: "heading text",
                     style:
-                        {
+                    {
 
-                        },
+                    },
                 });
                 break;
             }
@@ -36,9 +35,9 @@ class EditorBackend {
                     type: "Image",
                     url: "https://images.unsplash.com/photo-1585252478667-de7e8a482bdd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60",
                     style:
-                        {
+                    {
 
-                        },
+                    },
                 });
                 break;
             }
@@ -48,9 +47,9 @@ class EditorBackend {
                     text: "button text here",
                     url: "https://images.unsplash.com/photo-1585252478667-de7e8a482bdd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60",
                     style:
-                        {
+                    {
 
-                        },
+                    },
                 });
                 break;
             }
@@ -59,20 +58,177 @@ class EditorBackend {
                     type: "Divider",
                     url: "https://images.unsplash.com/photo-1585252478667-de7e8a482bdd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60",
                     style:
-                        {
+                    {
 
-                        },
+                    },
                 });
                 break;
             }
             case "Spacer": {
                 this.pages.push({
                     type: "Spacer",
-                    url: "https://images.unsplash.com/photo-1585252478667-de7e8a482bdd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60",
                     style:
+                    {
+                        width: "100%",
+                        height: "50px",
+                    },
+                });
+                break;
+            }
+            case "Row": {
+                this.pages.push({
+                    type: "Row",
+                    columns: [
                         {
+                            type: "Button",
+                            text: "button text here",
+                            url: "https://images.unsplash.com/photo-1585252478667-de7e8a482bdd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60",
+                            style:
+                            {
 
+                            },
                         },
+                        {
+                            type: "Button",
+                            text: "button text here",
+                            url: "https://images.unsplash.com/photo-1585252478667-de7e8a482bdd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60",
+                            style:
+                            {
+
+                            },
+                        },
+                        {
+                            type: "Button",
+                            text: "button text here",
+                            url: "https://images.unsplash.com/photo-1585252478667-de7e8a482bdd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60",
+                            style:
+                            {
+
+                            },
+                        },
+                    ],
+                    style:
+                    {
+                        width: "100%",
+                        height: "50px",
+                    },
+                });
+                break;
+            }
+            case "Icon": {
+                this.pages.push({
+                    type: "Icon",
+                    faClassName: "fa fa-car",
+                    style:
+                    {
+                        fontSize: "50px",
+                        color: "red",
+                    },
+                });
+                break;
+            }
+            case "Video": {
+                this.pages.push({
+                    type: "Video",
+                    url: "https://www.youtube.com/watch?v=33ChEMiqeBE",
+                    autoplay: "true",
+                    loop: "true",
+                    style:
+                    {
+                        backgroundColor: "blue",
+                        height: "200px",
+                        width: "300px",
+                    },
+                });
+                break;
+            }
+            case "ButtonGroup": {
+                this.pages.push({
+                    type: "ButtonGroup",
+                    style:
+                    {
+                    },
+                });
+                break;
+            }
+            case "Card": {
+                this.pages.push({
+                    type: "Card",
+                    style:
+                    {
+                    },
+                });
+                break;
+            }
+            case "Carousel": {
+                this.pages.push({
+                    type: "Carousel",
+                    style:
+                    {
+                    },
+                });
+                break;
+            }
+            case "Jumbotron": {
+                this.pages.push({
+                    type: "Jumbotron",
+                    style:
+                    {
+                    },
+                });
+                break;
+            }
+            case "List": {
+                this.pages.push({
+                    type: "List",
+                    style:
+                    {
+                    },
+                });
+                break;
+            }
+            case "Pagination": {
+                this.pages.push({
+                    type: "Pagination",
+                    style:
+                    {
+                    },
+                });
+                break;
+            }
+            case "Popover": {
+                this.pages.push({
+                    type: "Popover",
+                    style:
+                    {
+                    },
+                });
+                break;
+            }
+            case "Table": {
+                this.pages.push({
+                    type: "Table",
+                    style:
+                    {
+                    },
+                });
+                break;
+            }
+            case "Tabs": {
+                this.pages.push({
+                    type: "Tabs",
+                    style:
+                    {
+                    },
+                });
+                break;
+            }
+            case "Toast": {
+                this.pages.push({
+                    type: "Toast",
+                    style:
+                    {
+                    },
                 });
                 break;
             }

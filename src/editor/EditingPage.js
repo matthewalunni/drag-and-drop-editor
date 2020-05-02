@@ -19,12 +19,16 @@ class EditingPage extends Component {
                 page.push(
                     <>
                         <PageSection
+                            index={index}
                             type={jsonEntry.type}
-                            _key={index}
+                            key={index}
                             style={jsonEntry.style}
                             text={jsonEntry.text}
                             url={jsonEntry.url}
                             faClassName={jsonEntry.faClassName}
+                            columns={jsonEntry.columns}
+                            autoplay={jsonEntry.autoplay}
+                            loop={jsonEntry.loop}
                         />
                     </>
                 );
