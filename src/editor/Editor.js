@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import EditorSideBar from './sidebar/EditorSidebar';
+import EditorSideBar from './EditorSidebar';
 import EditingPage from '../editor/EditingPage';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';

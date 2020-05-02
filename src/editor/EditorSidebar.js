@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './sidebar.css';
-import '.././editor.css';
+import './editor.css';
 import Button from 'react-bootstrap/Button';
 
 
