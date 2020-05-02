@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/static/css/main.509c6651.chunk.css",
-    "main.js": "/static/js/main.104d45c1.chunk.js",
-    "main.js.map": "/static/js/main.104d45c1.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.09dc42ff.js",
-    "runtime-main.js.map": "/static/js/runtime-main.09dc42ff.js.map",
-    "static/css/2.47e06e2e.chunk.css": "/static/css/2.47e06e2e.chunk.css",
-    "static/js/2.58cd8488.chunk.js": "/static/js/2.58cd8488.chunk.js",
-    "static/js/2.58cd8488.chunk.js.map": "/static/js/2.58cd8488.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.c1ea8fc10e0319b53c3611c9c0f8caf0.js": "/precache-manifest.c1ea8fc10e0319b53c3611c9c0f8caf0.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/2.47e06e2e.chunk.css.map": "/static/css/2.47e06e2e.chunk.css.map",
-    "static/css/main.509c6651.chunk.css.map": "/static/css/main.509c6651.chunk.css.map",
-    "static/js/2.58cd8488.chunk.js.LICENSE.txt": "/static/js/2.58cd8488.chunk.js.LICENSE.txt"
+    "main.css": "/drag-and-drop-editor/static/css/main.509c6651.chunk.css",
+    "main.js": "/drag-and-drop-editor/static/js/main.7e16ee51.chunk.js",
+    "main.js.map": "/drag-and-drop-editor/static/js/main.7e16ee51.chunk.js.map",
+    "runtime-main.js": "/drag-and-drop-editor/static/js/runtime-main.c6704d14.js",
+    "runtime-main.js.map": "/drag-and-drop-editor/static/js/runtime-main.c6704d14.js.map",
+    "static/css/2.47e06e2e.chunk.css": "/drag-and-drop-editor/static/css/2.47e06e2e.chunk.css",
+    "static/js/2.ade284ac.chunk.js": "/drag-and-drop-editor/static/js/2.ade284ac.chunk.js",
+    "static/js/2.ade284ac.chunk.js.map": "/drag-and-drop-editor/static/js/2.ade284ac.chunk.js.map",
+    "index.html": "/drag-and-drop-editor/index.html",
+    "precache-manifest.9b72aac1f1554169b6989d896860cdde.js": "/drag-and-drop-editor/precache-manifest.9b72aac1f1554169b6989d896860cdde.js",
+    "service-worker.js": "/drag-and-drop-editor/service-worker.js",
+    "static/css/2.47e06e2e.chunk.css.map": "/drag-and-drop-editor/static/css/2.47e06e2e.chunk.css.map",
+    "static/css/main.509c6651.chunk.css.map": "/drag-and-drop-editor/static/css/main.509c6651.chunk.css.map",
+    "static/js/2.ade284ac.chunk.js.LICENSE.txt": "/drag-and-drop-editor/static/js/2.ade284ac.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.09dc42ff.js",
+    "static/js/runtime-main.c6704d14.js",
     "static/css/2.47e06e2e.chunk.css",
-    "static/js/2.58cd8488.chunk.js",
+    "static/js/2.ade284ac.chunk.js",
     "static/css/main.509c6651.chunk.css",
-    "static/js/main.104d45c1.chunk.js"
+    "static/js/main.7e16ee51.chunk.js"
   ]
 }
