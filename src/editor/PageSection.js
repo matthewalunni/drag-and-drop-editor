@@ -95,14 +95,18 @@ class PageSection extends Component {
      * @param {string} type 
      */
     returnPageSection(type) {
+        console.log(this.props);
         switch (type) {
             case "Navigation": {
                 return (
-                    <Navbar key={this.props.index} bg="light" expand="lg">
-                        <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+                    <Navbar key={this.props.index} bg="light" expand="lg" style={{ width: this.props.style.width }}>
+                        <Navbar.Brand href="#home" style={{ position: this.props.style.position, top: this.props.style.top }}>React-Bootstrap</Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                        <Navbar.Collapse id="basic-navbar-nav">
-                            <Nav className="mr-auto">
+                        <Navbar.Collapse id="basic-navbar-nav" style={{
+                            alignItems: this.props.style.alignItems,
+                            justifyContent: this.props.style.justifyContent
+                        }}>
+                            <Nav >
                                 <Nav.Link href="#home">Home</Nav.Link>
                                 <Nav.Link href="#link">Link</Nav.Link>
                                 <NavDropdown title="Dropdown" id="basic-nav-dropdown">
@@ -168,7 +172,7 @@ class PageSection extends Component {
             case "Card": {
                 return (
                     <Card style={{ width: '18rem' }}>
-                        <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
+                        <Card.Img variant="top" src="https://images.unsplash.com/photo-1473425021274-58232d06e88b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" />
                         <Card.Body>
                             <Card.Title>Card Title</Card.Title>
                             <Card.Text>
@@ -190,42 +194,42 @@ class PageSection extends Component {
             }
             case "Carousel": {
                 return (
-                    <Carousel>
-                        <Carousel.Item>
-                            <img
-                                className="d-block w-100"
-                                src="https://images.unsplash.com/photo-1474770337042-bd7e2ccb4f39?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60"
-                                alt="First slide"
-                            />
-                            <Carousel.Caption>
-                                <h3>First slide label</h3>
-                                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                            </Carousel.Caption>
-                        </Carousel.Item>
-                        <Carousel.Item>
-                            <img
-                                className="d-block w-100"
-                                src="https://images.unsplash.com/photo-1474770337042-bd7e2ccb4f39?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60"
-                                alt="Third slide"
-                            />
-                            <Carousel.Caption>
-                                <h3>Second slide label</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </Carousel.Caption>
-                        </Carousel.Item>
-                        <Carousel.Item>
-                            <img
-                                className="d-block w-100"
-                                src="https://images.unsplash.com/photo-1474770337042-bd7e2ccb4f39?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60"
-                                alt="Third slide"
-                            />
+                        <Carousel indicators={false} style={{ width: this.props.style.width }}>
+                            <Carousel.Item>
+                                <img
+                                    className="d-block w-100"
+                                    src="https://images.unsplash.com/photo-1474770337042-bd7e2ccb4f39?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60"
+                                    alt="First slide"
+                                />
+                                <Carousel.Caption>
+                                    <h3>First slide label</h3>
+                                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                                </Carousel.Caption>
+                            </Carousel.Item>
+                            <Carousel.Item>
+                                <img
+                                    className="d-block w-100"
+                                    src="https://images.unsplash.com/photo-1474770337042-bd7e2ccb4f39?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60"
+                                    alt="Third slide"
+                                />
+                                <Carousel.Caption>
+                                    <h3>Second slide label</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                </Carousel.Caption>
+                            </Carousel.Item>
+                            <Carousel.Item>
+                                <img
+                                    className="d-block w-100"
+                                    src="https://images.unsplash.com/photo-1474770337042-bd7e2ccb4f39?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60"
+                                    alt="Third slide"
+                                />
 
-                            <Carousel.Caption>
-                                <h3>Third slide label</h3>
-                                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                            </Carousel.Caption>
-                        </Carousel.Item>
-                    </Carousel>
+                                <Carousel.Caption>
+                                    <h3>Third slide label</h3>
+                                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                                </Carousel.Caption>
+                            </Carousel.Item>
+                        </Carousel>
                 );
             }
             case "Jumbotron": {
@@ -307,42 +311,6 @@ class PageSection extends Component {
                     </Table>
                 )
             }
-            case "Tabs": {
-                return (
-                    <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
-                        <Tab eventKey="home" title="Home">
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                            when an unknown printer took a galley of type and scrambled it to make a type
-                            specimen book. It has survived not only five centuries, but also the leap into
-                            electronic typesetting, remaining essentially unchanged. It was popularised in
-                            the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
-                            and more recently with desktop publishing software like Aldus PageMaker including
-                             versions of Lorem Ipsum.</p>
-                        </Tab>
-                        <Tab eventKey="profile" title="Profile">
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                            when an unknown printer took a galley of type and scrambled it to make a type
-                            specimen book. It has survived not only five centuries, but also the leap into
-                            electronic typesetting, remaining essentially unchanged. It was popularised in
-                            the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
-                            and more recently with desktop publishing software like Aldus PageMaker including
-                             versions of Lorem Ipsum.</p>
-                        </Tab>
-                        <Tab eventKey="contact" title="Contact" disabled>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                            when an unknown printer took a galley of type and scrambled it to make a type
-                            specimen book. It has survived not only five centuries, but also the leap into
-                            electronic typesetting, remaining essentially unchanged. It was popularised in
-                            the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
-                            and more recently with desktop publishing software like Aldus PageMaker including
-                             versions of Lorem Ipsum.</p>
-                        </Tab>
-                    </Tabs>
-                )
-            }
             case "Toast": {
                 return (
                     <Toast>
@@ -370,7 +338,7 @@ class PageSection extends Component {
         // being edited buy the user
         var classList = isClicked ? "page-section clicked" : "page-section";
         return (
-            
+
             <div
                 key={this.props.index}
                 className={classList}

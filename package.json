@@ -1,5 +1,5 @@
 {
-  "hopepage": "http://matthewalunni.github.io/drag-and-drop-editor",
+  "homepage": ".",
   "name": "drag-and-drop",
   "version": "0.1.0",
   "private": true,
@@ -11,6 +11,9 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "bootstrap": "^4.4.1",
+    "jquery": "^3.5.0",
+    "popper": "^1.0.1",
+    "popper.js": "^1.16.1",
     "react": "^16.13.0",
     "react-bootstrap": "^1.0.1",
     "react-dom": "^16.13.0",

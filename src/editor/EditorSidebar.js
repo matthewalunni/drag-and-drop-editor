@@ -89,11 +89,6 @@ class EditorSideBar extends Component {
                     Table
                     </Button>
                 <Button
-                    onClick={() => { this.props.sideBarButton_OnClick("Tabs") }}
-                    className="sidebar-button">
-                    Tabs
-                    </Button>
-                <Button
                     onClick={() => { this.props.sideBarButton_OnClick("Toast") }}
                     className="sidebar-button">
                     Toast

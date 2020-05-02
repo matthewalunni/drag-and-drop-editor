@@ -14,7 +14,11 @@ class EditorBackend {
                     type: "Navigation",
                     style:
                     {
-
+                        width: "100%",
+                        alignItems: "center",
+                        justifyContent: "flex-end",
+                        top: "25%",
+                        position: "absolute",
                     },
                 });
                 break;
@@ -59,7 +63,10 @@ class EditorBackend {
                     url: "https://images.unsplash.com/photo-1585252478667-de7e8a482bdd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60",
                     style:
                     {
-
+                        margin: "5px",
+                        borderTop: "8px solid black",
+                        borderRadius: "5px",
+                        width: "100%",
                     },
                 });
                 break;
@@ -165,6 +172,9 @@ class EditorBackend {
                     type: "Carousel",
                     style:
                     {
+                        width: "100%",
+                        height: "50%",
+                        backgroundColor: "red",
                     },
                 });
                 break;
@@ -214,15 +224,6 @@ class EditorBackend {
                 });
                 break;
             }
-            case "Tabs": {
-                this.pages.push({
-                    type: "Tabs",
-                    style:
-                    {
-                    },
-                });
-                break;
-            }
             case "Toast": {
                 this.pages.push({
                     type: "Toast",
@@ -239,92 +240,94 @@ class EditorBackend {
     }
 }
 
-let template = [
-    {
-        id: 0,
-        type: "Heading",
-        text: "heading 1",
-        style: {
-            color: "black",
-            fontSize: "10vh",
-            textAlign: "left",
-        },
-    },
-    {
-        id: 1,
-        type: "Heading",
-        text: "heading 2",
-        style: {
-            color: "black",
-            fontSize: "20vh",
-            textAlign: "center",
-        },
-    },
-    {
-        id: 2,
-        type: "Heading",
-        text: "heading 3",
-        style: {
-            color: "black",
-            fontSize: "30vh",
-            textAlign: "right",
-        },
-    },
-    {
-        id: 3,
-        type: "Divider",
-        text: "rounded divider",
-        style: {
-            borderTop: "8px solid #bbb",
-            borderRadius: "5px",
-        },
-    },
-    {
-        id: 4,
-        type: "Divider",
-        text: "dashed divider",
-        style: {
-            borderTop: "3px dashed #bbb",
-            borderRadius: "5px",
-        },
-    },
-    {
-        id: 5,
-        type: "Divider",
-        text: "solid divider",
-        style: {
-            borderTop: "3px solid #bbb",
-        },
-    },
-    {
-        id: 6,
-        type: "Image",
-        text: "alt text here",
-        url: "https://images.unsplash.com/photo-1583485056322-f0ba6fe51508?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1006&q=80",
-        style: {
-            width: "100%",
-            borderRadius: "5px",
-        },
-    },
-    {
-        id: 7,
-        type: "Divider",
-        text: "dotted divider",
-        style: {
-            borderTop: "3px dotted #bbb",
-            borderRadius: "5px",
-        },
-    },
-    {
-        id: 8,
-        type: "Button",
-        text: "button text here",
-        onClick: "some script maybe or something idk",
-        style: {
-            borderTop: "3px dotted #bbb",
-            borderRadius: "5px",
-        },
-    }
-];
+let template = [];
+
+// let template = [
+//     {
+//         id: 0,
+//         type: "Heading",
+//         text: "heading 1",
+//         style: {
+//             color: "black",
+//             fontSize: "10vh",
+//             textAlign: "left",
+//         },
+//     },
+//     {
+//         id: 1,
+//         type: "Heading",
+//         text: "heading 2",
+//         style: {
+//             color: "black",
+//             fontSize: "20vh",
+//             textAlign: "center",
+//         },
+//     },
+//     {
+//         id: 2,
+//         type: "Heading",
+//         text: "heading 3",
+//         style: {
+//             color: "black",
+//             fontSize: "30vh",
+//             textAlign: "right",
+//         },
+//     },
+//     {
+//         id: 3,
+//         type: "Divider",
+//         text: "rounded divider",
+//         style: {
+//             borderTop: "8px solid #bbb",
+//             borderRadius: "5px",
+//         },
+//     },
+//     {
+//         id: 4,
+//         type: "Divider",
+//         text: "dashed divider",
+//         style: {
+//             borderTop: "3px dashed #bbb",
+//             borderRadius: "5px",
+//         },
+//     },
+//     {
+//         id: 5,
+//         type: "Divider",
+//         text: "solid divider",
+//         style: {
+//             borderTop: "3px solid #bbb",
+//         },
+//     },
+//     {
+//         id: 6,
+//         type: "Image",
+//         text: "alt text here",
+//         url: "https://images.unsplash.com/photo-1583485056322-f0ba6fe51508?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1006&q=80",
+//         style: {
+//             width: "100%",
+//             borderRadius: "5px",
+//         },
+//     },
+//     {
+//         id: 7,
+//         type: "Divider",
+//         text: "dotted divider",
+//         style: {
+//             borderTop: "3px dotted #bbb",
+//             borderRadius: "5px",
+//         },
+//     },
+//     {
+//         id: 8,
+//         type: "Button",
+//         text: "button text here",
+//         onClick: "some script maybe or something idk",
+//         style: {
+//             borderTop: "3px dotted #bbb",
+//             borderRadius: "5px",
+//         },
+//     }
+// ];
 
 export default EditorBackend;
