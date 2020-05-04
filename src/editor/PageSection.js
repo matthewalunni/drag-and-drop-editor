@@ -344,7 +344,7 @@ class PageSection extends Component {
                 className={classList}
                 style={{ border: this.state.border }}
                 onClick={() => {
-                    this.props.onClick(this.props.index);
+                    this.props.onClick(this.props.index, this.props.type);
                 }}>
                 {this.returnPageSection(this.props.type)}
             </div>

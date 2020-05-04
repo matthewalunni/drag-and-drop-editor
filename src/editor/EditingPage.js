@@ -10,9 +10,9 @@ class EditingPage extends Component {
         }
     }
 
-    handleActiveElement = (id) => {
-        console.log(id)
+    handleActiveElement = (id, type) => {
         this.setState({ active: id });
+        this.props.pageSection_OnClick(id, type);
     }
 
     returnPage() {
