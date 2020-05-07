@@ -3,6 +3,10 @@ class EditorBackend {
         this.pages = template;
     }
 
+    setPage(page){
+        this.pages = page;
+    }
+
     all() {
         return this.pages;
     }

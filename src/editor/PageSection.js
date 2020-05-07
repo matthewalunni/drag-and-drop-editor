@@ -95,7 +95,7 @@ class PageSection extends Component {
      * @param {string} type 
      */
     returnPageSection(type) {
-        console.log(this.props);
+        //console.log(this.props);
         switch (type) {
             case "Navigation": {
                 return (

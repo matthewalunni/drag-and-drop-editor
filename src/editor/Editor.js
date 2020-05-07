@@ -35,6 +35,26 @@ class Editor extends Component {
         console.log(this.state, index)
     }
 
+
+    /**
+     * This function reorders the page.
+     * 
+     * @param {int} startIndex      starting position of dragged item
+     * @param {int} endIndex        ending position of dragged item
+     */
+    reorder = (startIndex, endIndex) => {
+        let list = backend.all()
+        console.log(list, startIndex, endIndex);
+        const result = Array.from(list);
+        const [removed] = result.splice(startIndex, 1);
+        result.splice(endIndex, 0, removed);
+
+        backend.setPage(result);
+        this.setState({ page: backend.all() })
+        return result;
+    };
+
+
     /**
      * This function returns the corresponding page section editor menu on page section click
      */
@@ -45,7 +65,7 @@ class Editor extends Component {
                     <Draggable>
                         <Toast
                             className="editor-menu"
-                            onClose={() => { this.setState({ menu: undefined }) }}>
+                            onClose={() => { this.setState({ menu: undefined, activePageSection: -1 }) }}>
                             <Toast.Header>
                                 <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
                                 <strong className="mr-auto">Navigation</strong>
@@ -75,7 +95,7 @@ class Editor extends Component {
                     <Draggable>
                         <Toast
                             className="editor-menu"
-                            onClose={() => { this.setState({ menu: undefined }) }}>
+                            onClose={() => { this.setState({ menu: undefined, activePageSection: -1 }) }}>
                             <Toast.Header>
                                 <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
                                 <strong className="mr-auto">Heading</strong>
@@ -93,7 +113,7 @@ class Editor extends Component {
                     <Draggable>
                         <Toast
                             className="editor-menu"
-                            onClose={() => { this.setState({ menu: undefined }) }}>
+                            onClose={() => { this.setState({ menu: undefined, activePageSection: -1 }) }}>
                             <Toast.Header>
                                 <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
                                 <strong className="mr-auto">Image</strong>
@@ -111,7 +131,7 @@ class Editor extends Component {
                     <Draggable>
                         <Toast
                             className="editor-menu"
-                            onClose={() => { this.setState({ menu: undefined }) }}>
+                            onClose={() => { this.setState({ menu: undefined, activePageSection: -1 }) }}>
                             <Toast.Header>
                                 <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
                                 <strong className="mr-auto">Button</strong>
@@ -129,7 +149,7 @@ class Editor extends Component {
                     <Draggable>
                         <Toast
                             className="editor-menu"
-                            onClose={() => { this.setState({ menu: undefined }) }}>
+                            onClose={() => { this.setState({ menu: undefined, activePageSection: -1 }) }}>
                             <Toast.Header>
                                 <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
                                 <strong className="mr-auto">Divider</strong>
@@ -147,7 +167,7 @@ class Editor extends Component {
                     <Draggable>
                         <Toast
                             className="editor-menu"
-                            onClose={() => { this.setState({ menu: undefined }) }}>
+                            onClose={() => { this.setState({ menu: undefined, activePageSection: -1 }) }}>
                             <Toast.Header>
                                 <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
                                 <strong className="mr-auto">Spacer</strong>
@@ -165,7 +185,7 @@ class Editor extends Component {
                     <Draggable>
                         <Toast
                             className="editor-menu"
-                            onClose={() => { this.setState({ menu: undefined }) }}>
+                            onClose={() => { this.setState({ menu: undefined, activePageSection: -1 }) }}>
                             <Toast.Header>
                                 <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
                                 <strong className="mr-auto">Row</strong>
@@ -183,7 +203,7 @@ class Editor extends Component {
                     <Draggable>
                         <Toast
                             className="editor-menu"
-                            onClose={() => { this.setState({ menu: undefined }) }}>
+                            onClose={() => { this.setState({ menu: undefined, activePageSection: -1 }) }}>
                             <Toast.Header>
                                 <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
                                 <strong className="mr-auto">Icon</strong>
@@ -201,7 +221,7 @@ class Editor extends Component {
                     <Draggable>
                         <Toast
                             className="editor-menu"
-                            onClose={() => { this.setState({ menu: undefined }) }}>
+                            onClose={() => { this.setState({ menu: undefined, activePageSection: -1 }) }}>
                             <Toast.Header>
                                 <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
                                 <strong className="mr-auto">Video</strong>
@@ -219,7 +239,7 @@ class Editor extends Component {
                     <Draggable>
                         <Toast
                             className="editor-menu"
-                            onClose={() => { this.setState({ menu: undefined }) }}>
+                            onClose={() => { this.setState({ menu: undefined, activePageSection: -1 }) }}>
                             <Toast.Header>
                                 <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
                                 <strong className="mr-auto">ButtonGroup</strong>
@@ -237,7 +257,7 @@ class Editor extends Component {
                     <Draggable>
                         <Toast
                             className="editor-menu"
-                            onClose={() => { this.setState({ menu: undefined }) }}>
+                            onClose={() => { this.setState({ menu: undefined, activePageSection: -1 }) }}>
                             <Toast.Header>
                                 <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
                                 <strong className="mr-auto">Card`</strong>
@@ -255,7 +275,7 @@ class Editor extends Component {
                     <Draggable>
                         <Toast
                             className="editor-menu"
-                            onClose={() => { this.setState({ menu: undefined }) }}>
+                            onClose={() => { this.setState({ menu: undefined, activePageSection: -1 }) }}>
                             <Toast.Header>
                                 <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
                                 <strong className="mr-auto">Carousel</strong>
@@ -273,7 +293,7 @@ class Editor extends Component {
                     <Draggable>
                         <Toast
                             className="editor-menu"
-                            onClose={() => { this.setState({ menu: undefined }) }}>
+                            onClose={() => { this.setState({ menu: undefined, activePageSection: -1 }) }}>
                             <Toast.Header>
                                 <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
                                 <strong className="mr-auto">Jumbotron</strong>
@@ -291,7 +311,7 @@ class Editor extends Component {
                     <Draggable>
                         <Toast
                             className="editor-menu"
-                            onClose={() => { this.setState({ menu: undefined }) }}>
+                            onClose={() => { this.setState({ menu: undefined, activePageSection: -1 }) }}>
                             <Toast.Header>
                                 <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
                                 <strong className="mr-auto">List</strong>
@@ -309,7 +329,7 @@ class Editor extends Component {
                     <Draggable>
                         <Toast
                             className="editor-menu"
-                            onClose={() => { this.setState({ menu: undefined }) }}>
+                            onClose={() => { this.setState({ menu: undefined, activePageSection: -1 }) }}>
                             <Toast.Header>
                                 <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
                                 <strong className="mr-auto">Pagination</strong>
@@ -327,7 +347,7 @@ class Editor extends Component {
                     <Draggable>
                         <Toast
                             className="editor-menu"
-                            onClose={() => { this.setState({ menu: undefined }) }}>
+                            onClose={() => { this.setState({ menu: undefined, activePageSection: -1 }) }}>
                             <Toast.Header>
                                 <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
                                 <strong className="mr-auto">Table</strong>
@@ -345,7 +365,7 @@ class Editor extends Component {
                     <Draggable>
                         <Toast
                             className="editor-menu"
-                            onClose={() => { this.setState({ menu: undefined }) }}>
+                            onClose={() => { this.setState({ menu: undefined, activePageSection: -1 }) }}>
                             <Toast.Header>
                                 <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
                                 <strong className="mr-auto">Toast</strong>
@@ -373,7 +393,12 @@ class Editor extends Component {
                         <EditorSideBar sideBarButton_OnClick={this.sideBarButton_OnClick} page={this.props.page} />
                     </Col>
                     <Col className="editing-page">
-                        <EditingPage pageSection_OnClick={this.pageSection_OnClick} active={this.state.activePageSection} page={this.state.page} />
+                        <EditingPage
+                            pageSection_OnClick={this.pageSection_OnClick}
+                            active={this.state.activePageSection}
+                            page={this.state.page}
+                            reorder={this.reorder}
+                        />
                     </Col>
                     {this.returnMenu()}
                 </Row>
