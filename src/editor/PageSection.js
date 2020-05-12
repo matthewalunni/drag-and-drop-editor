@@ -140,7 +140,22 @@ class PageSection extends Component {
                 );
             }
             case "Heading": {
-                return (<h1 key={this.props.index} style={this.props.jsonEntry.style}>{this.props.jsonEntry.text}</h1>)
+                return (
+                    <h1
+                        key={this.props.index}
+                        style={{
+                            backgroundColor: this.props.jsonEntry.style.backgroundColor,
+                            color: this.props.jsonEntry.style.color,
+                            fontFamily: this.props.jsonEntry.style.fontFamily,
+                            paddingTop: this.props.jsonEntry.style.paddingTop,
+                            paddingBottom: this.props.jsonEntry.style.paddingBottom,
+                            width: "100%",
+                            height: "100%",
+                            marginBottom: "0",
+                            textAlign: this.props.jsonEntry.style.textAlign,
+                        }}>
+                        {this.props.jsonEntry.text}
+                    </h1>);
             }
             case "Divider": {
                 return (<hr key={this.props.index} style={this.props.jsonEntry.style} />);

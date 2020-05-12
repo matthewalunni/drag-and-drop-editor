@@ -19,8 +19,9 @@ class EditorBackend {
             this.pages[selected][field].splice(secondaryField, 1);
         }
         else {
+            console.log(this.pages[selected]);
             this.pages[selected][field][secondaryField] = value;
-            console.log(this.pages[selected])
+            
         }
 
     }
@@ -76,7 +77,12 @@ class EditorBackend {
                     text: "heading text",
                     style:
                     {
-
+                        color: "#000",
+                        backgroundColor: "#FFF",
+                        fontFamily: "inherit",
+                        paddingTop: "inherit", 
+                        paddingBottom: "inherit",
+                        textAlign: "center",
                     },
                 });
                 break;
