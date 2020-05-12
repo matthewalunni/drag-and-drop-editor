@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import EditorSideBar from './EditorSidebar';
 import EditingPage from '../editor/EditingPage';
+import NavigationMenu from './menus/NavigationMenu';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import EditorBackend from './EditorBackend';
 import Toast from 'react-bootstrap/Toast';
@@ -17,7 +17,7 @@ class Editor extends Component {
         this.state = {
             page: backend.all(),
             activePageSection: -1,
-            menu: undefined,
+            json: "",
         }
     }
 
@@ -26,15 +26,12 @@ class Editor extends Component {
         this.setState({ page: backend.pages });
     }
 
-    pageSection_OnClick = (index, type) => {
-        console.log(this.state, index, type)
+    pageSection_OnClick = (index, json) => {
         this.setState({
             activePageSection: index,
-            menu: type
+            json: json
         });
-        console.log(this.state, index)
     }
-
 
     /**
      * This function reorders the page.
@@ -44,50 +41,55 @@ class Editor extends Component {
      */
     reorder = (startIndex, endIndex) => {
         let list = backend.all()
-        console.log(list, startIndex, endIndex);
         const result = Array.from(list);
         const [removed] = result.splice(startIndex, 1);
         result.splice(endIndex, 0, removed);
-
         backend.setPage(result);
         this.setState({ page: backend.all() })
         return result;
     };
 
 
+    editJson = (field, value, selected) => {
+        backend.editJson(field, value, selected);
+        this.setState({ page: backend.all() })
+    }
+
+    editJsonArray = (field, index, value, selected) => {
+        backend.editJsonArray(field, index, value, selected);
+        this.setState({ page: backend.all() })
+    }
+
+    addToJsonArray = (field, secondaryField, value, selected) => {
+        backend.addToJsonArray(field, secondaryField, value, selected);
+        this.setState({ page: backend.all() })
+    }
+
+    deleteSection = (selected) => {
+        backend.deleteSection(selected);
+        this.setState({
+            page: backend.all(),
+            activePageSection: -1,
+            json: "",
+        })
+    }
+
     /**
      * This function returns the corresponding page section editor menu on page section click
      */
     returnMenu() {
-        switch (this.state.menu) {
+        switch (this.state.json.type) {
             case "Navigation": {
                 return (
-                    <Draggable>
-                        <Toast
-                            className="editor-menu"
-                            onClose={() => { this.setState({ menu: undefined, activePageSection: -1 }) }}>
-                            <Toast.Header>
-                                <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
-                                <strong className="mr-auto">Navigation</strong>
-                                <small>Edit Navigation</small>
-                            </Toast.Header>
-                            <Toast.Body>
-                                Hello, world! This is a toast message.
-                            <Form>
-                                    <Row>
-                                        <Col>
-                                            <Form.Label>Text Input</Form.Label>
-                                        </Col>
-                                        <Col>
-                                            <Form.Control
-                                                type="text"
-                                                placeholder="Enter email" />
-                                        </Col>
-                                    </Row>
-                                </Form>
-                            </Toast.Body>
-                        </Toast>
-                    </Draggable>
+                    <NavigationMenu
+                        onClose={() => { this.setState({ json: "", activePageSection: -1 }) }}
+                        jsonEntry={this.state.json}
+                        editJson={this.editJson}
+                        editJsonArray={this.editJsonArray}
+                        addToJsonArray={this.addToJsonArray}
+                        selected={this.state.activePageSection}
+                        deleteSection={this.deleteSection}
+                    />
                 )
             }
             case "Heading": {
@@ -95,7 +97,7 @@ class Editor extends Component {
                     <Draggable>
                         <Toast
                             className="editor-menu"
-                            onClose={() => { this.setState({ menu: undefined, activePageSection: -1 }) }}>
+                            onClose={() => { this.setState({ json: "", activePageSection: -1 }) }}>
                             <Toast.Header>
                                 <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
                                 <strong className="mr-auto">Heading</strong>
@@ -113,7 +115,7 @@ class Editor extends Component {
                     <Draggable>
                         <Toast
                             className="editor-menu"
-                            onClose={() => { this.setState({ menu: undefined, activePageSection: -1 }) }}>
+                            onClose={() => { this.setState({ json: "", activePageSection: -1 }) }}>
                             <Toast.Header>
                                 <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
                                 <strong className="mr-auto">Image</strong>
@@ -131,7 +133,7 @@ class Editor extends Component {
                     <Draggable>
                         <Toast
                             className="editor-menu"
-                            onClose={() => { this.setState({ menu: undefined, activePageSection: -1 }) }}>
+                            onClose={() => { this.setState({ json: "", activePageSection: -1 }) }}>
                             <Toast.Header>
                                 <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
                                 <strong className="mr-auto">Button</strong>
@@ -149,7 +151,7 @@ class Editor extends Component {
                     <Draggable>
                         <Toast
                             className="editor-menu"
-                            onClose={() => { this.setState({ menu: undefined, activePageSection: -1 }) }}>
+                            onClose={() => { this.setState({ json: "", activePageSection: -1 }) }}>
                             <Toast.Header>
                                 <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
                                 <strong className="mr-auto">Divider</strong>
@@ -167,7 +169,7 @@ class Editor extends Component {
                     <Draggable>
                         <Toast
                             className="editor-menu"
-                            onClose={() => { this.setState({ menu: undefined, activePageSection: -1 }) }}>
+                            onClose={() => { this.setState({ json: "", activePageSection: -1 }) }}>
                             <Toast.Header>
                                 <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
                                 <strong className="mr-auto">Spacer</strong>
@@ -185,7 +187,7 @@ class Editor extends Component {
                     <Draggable>
                         <Toast
                             className="editor-menu"
-                            onClose={() => { this.setState({ menu: undefined, activePageSection: -1 }) }}>
+                            onClose={() => { this.setState({ json: "", activePageSection: -1 }) }}>
                             <Toast.Header>
                                 <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
                                 <strong className="mr-auto">Row</strong>
@@ -203,7 +205,7 @@ class Editor extends Component {
                     <Draggable>
                         <Toast
                             className="editor-menu"
-                            onClose={() => { this.setState({ menu: undefined, activePageSection: -1 }) }}>
+                            onClose={() => { this.setState({ json: "", activePageSection: -1 }) }}>
                             <Toast.Header>
                                 <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
                                 <strong className="mr-auto">Icon</strong>
@@ -221,7 +223,7 @@ class Editor extends Component {
                     <Draggable>
                         <Toast
                             className="editor-menu"
-                            onClose={() => { this.setState({ menu: undefined, activePageSection: -1 }) }}>
+                            onClose={() => { this.setState({ json: "", activePageSection: -1 }) }}>
                             <Toast.Header>
                                 <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
                                 <strong className="mr-auto">Video</strong>
@@ -239,7 +241,7 @@ class Editor extends Component {
                     <Draggable>
                         <Toast
                             className="editor-menu"
-                            onClose={() => { this.setState({ menu: undefined, activePageSection: -1 }) }}>
+                            onClose={() => { this.setState({ json: "", activePageSection: -1 }) }}>
                             <Toast.Header>
                                 <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
                                 <strong className="mr-auto">ButtonGroup</strong>
@@ -257,7 +259,7 @@ class Editor extends Component {
                     <Draggable>
                         <Toast
                             className="editor-menu"
-                            onClose={() => { this.setState({ menu: undefined, activePageSection: -1 }) }}>
+                            onClose={() => { this.setState({ json: "", activePageSection: -1 }) }}>
                             <Toast.Header>
                                 <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
                                 <strong className="mr-auto">Card`</strong>
@@ -275,7 +277,7 @@ class Editor extends Component {
                     <Draggable>
                         <Toast
                             className="editor-menu"
-                            onClose={() => { this.setState({ menu: undefined, activePageSection: -1 }) }}>
+                            onClose={() => { this.setState({ json: "", activePageSection: -1 }) }}>
                             <Toast.Header>
                                 <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
                                 <strong className="mr-auto">Carousel</strong>
@@ -293,7 +295,7 @@ class Editor extends Component {
                     <Draggable>
                         <Toast
                             className="editor-menu"
-                            onClose={() => { this.setState({ menu: undefined, activePageSection: -1 }) }}>
+                            onClose={() => { this.setState({ json: "", activePageSection: -1 }) }}>
                             <Toast.Header>
                                 <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
                                 <strong className="mr-auto">Jumbotron</strong>
@@ -311,7 +313,7 @@ class Editor extends Component {
                     <Draggable>
                         <Toast
                             className="editor-menu"
-                            onClose={() => { this.setState({ menu: undefined, activePageSection: -1 }) }}>
+                            onClose={() => { this.setState({ json: "", activePageSection: -1 }) }}>
                             <Toast.Header>
                                 <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
                                 <strong className="mr-auto">List</strong>
@@ -329,7 +331,7 @@ class Editor extends Component {
                     <Draggable>
                         <Toast
                             className="editor-menu"
-                            onClose={() => { this.setState({ menu: undefined, activePageSection: -1 }) }}>
+                            onClose={() => { this.setState({ json: "", activePageSection: -1 }) }}>
                             <Toast.Header>
                                 <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
                                 <strong className="mr-auto">Pagination</strong>
@@ -347,7 +349,7 @@ class Editor extends Component {
                     <Draggable>
                         <Toast
                             className="editor-menu"
-                            onClose={() => { this.setState({ menu: undefined, activePageSection: -1 }) }}>
+                            onClose={() => { this.setState({ json: "", activePageSection: -1 }) }}>
                             <Toast.Header>
                                 <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
                                 <strong className="mr-auto">Table</strong>
@@ -365,7 +367,7 @@ class Editor extends Component {
                     <Draggable>
                         <Toast
                             className="editor-menu"
-                            onClose={() => { this.setState({ menu: undefined, activePageSection: -1 }) }}>
+                            onClose={() => { this.setState({ json: "", activePageSection: -1 }) }}>
                             <Toast.Header>
                                 <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
                                 <strong className="mr-auto">Toast</strong>
@@ -379,7 +381,7 @@ class Editor extends Component {
                 );
             }
             default: {
-                return undefined;
+                return "";
             }
         }
     }

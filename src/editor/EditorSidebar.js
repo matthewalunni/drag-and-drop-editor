@@ -11,87 +11,87 @@ class EditorSideBar extends Component {
                 <Button
                     onClick={() => { this.props.sideBarButton_OnClick("Navigation") }}
                     className="sidebar-button">
-                    Navigation
+                    + Navigation
                     </Button>
                 <Button
                     onClick={() => { this.props.sideBarButton_OnClick("Heading") }}
                     className="sidebar-button">
-                    Heading
+                    + Heading
                     </Button>
                 <Button
                     onClick={() => { this.props.sideBarButton_OnClick("Image") }}
                     className="sidebar-button">
-                    Image
+                    + Image
                     </Button>
                 <Button
                     onClick={() => { this.props.sideBarButton_OnClick("Button") }}
                     className="sidebar-button">
-                    Button
+                    + Button
                     </Button>
                 <Button
                     onClick={() => { this.props.sideBarButton_OnClick("Divider") }}
                     className="sidebar-button">
-                    Divider
+                    + Divider
                     </Button>
                 <Button
                     onClick={() => { this.props.sideBarButton_OnClick("Spacer") }}
                     className="sidebar-button">
-                    Spacer
+                    + Spacer
                     </Button>
                 <Button
                     onClick={() => { this.props.sideBarButton_OnClick("Row") }}
                     className="sidebar-button">
-                    Row
+                    + Row
                     </Button>
                 <Button
                     onClick={() => { this.props.sideBarButton_OnClick("Icon") }}
                     className="sidebar-button">
-                    Icon
+                    + Icon
                     </Button>
                 <Button
                     onClick={() => { this.props.sideBarButton_OnClick("Video") }}
                     className="sidebar-button">
-                    Video
+                    + Video
                     </Button>
                 <Button
                     onClick={() => { this.props.sideBarButton_OnClick("ButtonGroup") }}
                     className="sidebar-button">
-                    ButtonGroup
+                    + ButtonGroup
                     </Button>
                 <Button
                     onClick={() => { this.props.sideBarButton_OnClick("Card") }}
                     className="sidebar-button">
-                    Card
+                    + Card
                     </Button>
                 <Button
                     onClick={() => { this.props.sideBarButton_OnClick("Carousel") }}
                     className="sidebar-button">
-                    Carousel
+                    + Carousel
                     </Button>
                 <Button
                     onClick={() => { this.props.sideBarButton_OnClick("Jumbotron") }}
                     className="sidebar-button">
-                    Jumbotron
+                    + Jumbotron
                     </Button>
                 <Button
                     onClick={() => { this.props.sideBarButton_OnClick("List") }}
                     className="sidebar-button">
-                    List
+                    + List
                     </Button>
                 <Button
                     onClick={() => { this.props.sideBarButton_OnClick("Pagination") }}
                     className="sidebar-button">
-                    Pagination
+                    + Pagination
                     </Button>
                 <Button
                     onClick={() => { this.props.sideBarButton_OnClick("Table") }}
                     className="sidebar-button">
-                    Table
+                    + Table
                     </Button>
                 <Button
                     onClick={() => { this.props.sideBarButton_OnClick("Toast") }}
                     className="sidebar-button">
-                    Toast
+                    + Toast
                     </Button>
             </>
         );

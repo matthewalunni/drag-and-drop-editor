@@ -3,8 +3,34 @@ class EditorBackend {
         this.pages = template;
     }
 
-    setPage(page){
+    setPage(page) {
         this.pages = page;
+    }
+
+    editJson = (field, value, selected) => {
+        console.log(this.pages[selected][field])
+        this.pages[selected][field] = value;
+    }
+
+    editJsonArray = (field, secondaryField, value, selected) => {
+        //delete if undefined
+        console.log(this.pages[selected][field], field, secondaryField, value, selected)
+        if(value === undefined){
+            this.pages[selected][field].splice(secondaryField, 1);
+        }
+        else {
+            this.pages[selected][field][secondaryField] = value;
+            console.log(this.pages[selected])
+        }
+
+    }
+
+    addToJsonArray = (field, jsonObj, selected) => {
+        this.pages[selected][field].push(jsonObj);
+    }
+
+    deleteSection = (selected) => {
+        this.pages.splice(selected, 1);
     }
 
     all() {
@@ -16,6 +42,18 @@ class EditorBackend {
             case "Navigation": {
                 this.pages.unshift({
                     type: "Navigation",
+                    brand: "Navbar Brand",
+                    brandUrl: "#home",
+                    links: [
+                        {
+                            text: "home",
+                            url: "www.google.ca",
+                        },
+                        {
+                            text: "second",
+                            url: "www.yahoo.ca",
+                        }
+                    ],
                     style:
                     {
                         width: "100%",
@@ -23,6 +61,11 @@ class EditorBackend {
                         justifyContent: "flex-end",
                         top: "25%",
                         position: "absolute",
+                        backgroundColor: "#dfe6e9",
+                        color: "black",
+                        fontFamily: "inherit",
+                        marginLeft: "inherit",
+                        marginRight: "inherit",
                     },
                 });
                 break;
@@ -241,6 +284,9 @@ class EditorBackend {
                 break;
             }
         }
+
+        
+        console.log(name, this.pages)
     }
 }
 

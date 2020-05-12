@@ -10,7 +10,7 @@
   align-items: center;
   margin-left: 30vw;
   width: 70vw;
-  max-width: 70vw!important;
+  max-width: 70vw !important;
   padding: 0;
 }
 
@@ -34,7 +34,15 @@
   z-index: 2;
   bottom: 2%;
   right: 1%;
-  width: 20%;
+  width: 30%;
+}
+
+.secondary-menu {
+  position: absolute;
+  z-index: 2;
+  bottom: 2%;
+  right: 32%;
+  width: 30%;
 }
 
 .toast-header {
@@ -43,4 +51,41 @@
 
 .toast-body {
   font-size: medium;
+}
+
+.center {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.center-right {
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.close-button {
+  border-radius: 100%;
+}
+
+.pr-0 {
+  padding-right: 0%;
+}
+
+.w-90 {
+  width: 90%!important;
+}
+
+.w-95 {
+  width: 95%!important;
+}
+
+.w-100 {
+  width: 100%!important;
+}
+
+.sketch-picker {
+  width: 85%!important;
 }

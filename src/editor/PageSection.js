@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import YouTube from 'react-youtube';
@@ -14,8 +13,6 @@ import Carousel from 'react-bootstrap/Carousel';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Pagination from 'react-bootstrap/Pagination';
 import Table from 'react-bootstrap/Table';
-import Tabs from 'react-bootstrap/Tabs';
-import Tab from 'react-bootstrap/Tab';
 import Toast from 'react-bootstrap/Toast';
 
 
@@ -25,24 +22,38 @@ class PageSection extends Component {
         this.state = {
             border: undefined,
         }
+        console.log(this.props)
     }
 
-    // componentDidMount() {
-    //     if (this.props.active === this.props.index || this.state.border === "1px solid green") {
-    //         this.setState({ border: "1px solid green" })
-    //     }
-    //     else {
-    //         this.setState({border: "hidden"});
-    //     }
-    // }
+    returnNavLinks() {
+        console.log(this.props.jsonEntry)
+        let result = [];
+        for (let index = 0; index < this.props.jsonEntry.links.length; index++) {
+            const element = this.props.jsonEntry.links[index];
+            result.push(
+                <Nav.Link
+                    key={index}
+                    style={{
+                        color: this.props.jsonEntry.style.color,
+                        fontFamily: this.props.jsonEntry.style.fontFamily,
+                        marginRight: this.props.jsonEntry.style.marginRight,
+                        marginLeft: this.props.jsonEntry.style.marginLeft,
+                    }}
+                    href={element.url}>
+                    {element.text}
+                </Nav.Link>
+            )
+        }
+        return result;
+    }
 
     /**
      * This method processes the columns in a row and returns their react component/HTML representation.
      */
     returnColumns() {
         let result = [];
-        for (let index = 0; index < this.props.columns.length; index++) {
-            const element = this.props.columns[index];
+        for (let index = 0; index < this.props.jsonEntry.columns.length; index++) {
+            const element = this.props.jsonEntry.columns[index];
             result.push(
                 <Col>
                     {this.returnPageSection(element.type)}
@@ -95,46 +106,53 @@ class PageSection extends Component {
      * @param {string} type 
      */
     returnPageSection(type) {
-        //console.log(this.props);
         switch (type) {
             case "Navigation": {
                 return (
-                    <Navbar key={this.props.index} bg="light" expand="lg" style={{ width: this.props.style.width }}>
-                        <Navbar.Brand href="#home" style={{ position: this.props.style.position, top: this.props.style.top }}>React-Bootstrap</Navbar.Brand>
+                    <Navbar
+                        key={this.props.index}
+                        expand="lg"
+                        style={{
+                            width: this.props.jsonEntry.style.width,
+                            margin: "0",
+                            backgroundColor: this.props.jsonEntry.style.backgroundColor
+                        }}>
+                        <Navbar.Brand
+                            href={this.props.jsonEntry.brandUrl}
+                            style={{
+                                position: this.props.jsonEntry.style.position,
+                                top: this.props.jsonEntry.style.top,
+                                color: this.props.jsonEntry.style.color,
+                                fontFamily: this.props.jsonEntry.style.fontFamily,
+                            }}>
+                            {this.props.jsonEntry.brand}
+                        </Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav" style={{
-                            alignItems: this.props.style.alignItems,
-                            justifyContent: this.props.style.justifyContent
+                            alignItems: this.props.jsonEntry.style.alignItems,
+                            justifyContent: this.props.jsonEntry.style.justifyContent
                         }}>
                             <Nav >
-                                <Nav.Link href="#home">Home</Nav.Link>
-                                <Nav.Link href="#link">Link</Nav.Link>
-                                <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                                    <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                                    <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                                    <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                                    <NavDropdown.Divider />
-                                    <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-                                </NavDropdown>
+                                {this.returnNavLinks()}
                             </Nav>
                         </Navbar.Collapse>
                     </Navbar>
                 );
             }
             case "Heading": {
-                return (<h1 key={this.props.index} style={this.props.style}>{this.props.text}</h1>)
+                return (<h1 key={this.props.index} style={this.props.jsonEntry.style}>{this.props.jsonEntry.text}</h1>)
             }
             case "Divider": {
-                return (<hr key={this.props.index} style={this.props.style} />);
+                return (<hr key={this.props.index} style={this.props.jsonEntry.style} />);
             }
             case "Image": {
-                return (<img key={this.props.index} src={this.props.url} alt={this.props.text} style={this.props.style} />)
+                return (<img key={this.props.index} src={this.props.jsonEntry.url} alt={this.props.text} style={this.props.jsonEntry.style} />)
             }
             case "Button": {
-                return (<button key={this.props.index} style={this.props.style}>{this.props.text}</button>)
+                return (<Button key={this.props.index} style={this.props.jsonEntry.style}>{this.props.jsonEntry.text}</Button>)
             }
             case "Spacer": {
-                return (<div key={this.props.index} style={this.props.style}></div>);
+                return (<div key={this.props.index} style={this.props.jsonEntry.style}></div>);
             }
             case "Row": {
                 return (
@@ -145,20 +163,24 @@ class PageSection extends Component {
             }
             case "Video": {
                 return (
-                    <div style={{ backgroundColor: this.props.style.backgroundColor }}>
-                        <div key={this.props.index} style={this.props.style}>
+                    <div style={{ backgroundColor: this.props.jsonEntry.style.backgroundColor }}>
+                        <div key={this.props.index} style={this.props.jsonEntry.style}>
                             {this.returnYouTube(
-                                this.props.url,
-                                this.props.style["height"],
-                                this.props.style["width"],
-                                this.props.autoplay,
-                                this.props.loop)}
+                                this.props.jsonEntry.url,
+                                this.props.jsonEntry.style.height,
+                                this.props.jsonEntry.style.width,
+                                this.props.jsonEntry.autoplay,
+                                this.props.jsonEntry.loop)}
                         </div>
                     </div>
                 );
             }
             case "Icon": {
-                return (<i key={this.props.index} className={this.props.faClassName} style={this.props.style} />)
+                return (<i
+                    key={this.props.index}
+                    className={this.props.jsonEntry.faClassName}
+                    style={this.props.jsonEntry.style}
+                />)
             }
             case "ButtonGroup": {
                 return (
@@ -194,42 +216,42 @@ class PageSection extends Component {
             }
             case "Carousel": {
                 return (
-                        <Carousel indicators={false} style={{ width: this.props.style.width }}>
-                            <Carousel.Item>
-                                <img
-                                    className="d-block w-100"
-                                    src="https://images.unsplash.com/photo-1474770337042-bd7e2ccb4f39?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60"
-                                    alt="First slide"
-                                />
-                                <Carousel.Caption>
-                                    <h3>First slide label</h3>
-                                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                                </Carousel.Caption>
-                            </Carousel.Item>
-                            <Carousel.Item>
-                                <img
-                                    className="d-block w-100"
-                                    src="https://images.unsplash.com/photo-1474770337042-bd7e2ccb4f39?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60"
-                                    alt="Third slide"
-                                />
-                                <Carousel.Caption>
-                                    <h3>Second slide label</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                </Carousel.Caption>
-                            </Carousel.Item>
-                            <Carousel.Item>
-                                <img
-                                    className="d-block w-100"
-                                    src="https://images.unsplash.com/photo-1474770337042-bd7e2ccb4f39?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60"
-                                    alt="Third slide"
-                                />
+                    <Carousel indicators={false} style={{ width: this.props.jsonEntry.style.width }}>
+                        <Carousel.Item>
+                            <img
+                                className="d-block w-100"
+                                src="https://images.unsplash.com/photo-1474770337042-bd7e2ccb4f39?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60"
+                                alt="First slide"
+                            />
+                            <Carousel.Caption>
+                                <h3>First slide label</h3>
+                                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                            </Carousel.Caption>
+                        </Carousel.Item>
+                        <Carousel.Item>
+                            <img
+                                className="d-block w-100"
+                                src="https://images.unsplash.com/photo-1474770337042-bd7e2ccb4f39?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60"
+                                alt="Third slide"
+                            />
+                            <Carousel.Caption>
+                                <h3>Second slide label</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            </Carousel.Caption>
+                        </Carousel.Item>
+                        <Carousel.Item>
+                            <img
+                                className="d-block w-100"
+                                src="https://images.unsplash.com/photo-1474770337042-bd7e2ccb4f39?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60"
+                                alt="Third slide"
+                            />
 
-                                <Carousel.Caption>
-                                    <h3>Third slide label</h3>
-                                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                                </Carousel.Caption>
-                            </Carousel.Item>
-                        </Carousel>
+                            <Carousel.Caption>
+                                <h3>Third slide label</h3>
+                                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                            </Carousel.Caption>
+                        </Carousel.Item>
+                    </Carousel>
                 );
             }
             case "Jumbotron": {
@@ -344,9 +366,9 @@ class PageSection extends Component {
                 className={classList}
                 style={{ border: this.state.border }}
                 onClick={() => {
-                    this.props.onClick(this.props.index, this.props.type);
+                    this.props.onClick(this.props.index, this.props.jsonEntry);
                 }}>
-                {this.returnPageSection(this.props.type)}
+                {this.returnPageSection(this.props.jsonEntry.type)}
             </div>
         );
     }
