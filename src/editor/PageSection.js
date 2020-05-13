@@ -161,7 +161,26 @@ class PageSection extends Component {
                 return (<hr key={this.props.index} style={this.props.jsonEntry.style} />);
             }
             case "Image": {
-                return (<img key={this.props.index} src={this.props.jsonEntry.url} alt={this.props.text} style={this.props.jsonEntry.style} />)
+                return (
+                    <div style={{
+                        backgroundColor: this.props.jsonEntry.style.backgroundColor,
+                        width: "100%", 
+                        height: "100%",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: this.props.jsonEntry.style.justifyContent
+                    }}>
+                        <img
+                            key={this.props.index}
+                            src={this.props.jsonEntry.url}
+                            alt={this.props.text}
+                            style={{
+                                paddingBottom: this.props.jsonEntry.style.paddingBottom,
+                                paddingTop: this.props.jsonEntry.style.paddingTop,
+                                borderRadius: this.props.jsonEntry.style.borderRadius,
+                            }} />
+                    </div>
+                );
             }
             case "Button": {
                 return (<Button key={this.props.index} style={this.props.jsonEntry.style}>{this.props.jsonEntry.text}</Button>)

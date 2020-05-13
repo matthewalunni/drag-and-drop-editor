@@ -93,7 +93,11 @@ class EditorBackend {
                     url: "https://images.unsplash.com/photo-1585252478667-de7e8a482bdd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60",
                     style:
                     {
-
+                        paddingTop: "inherit",
+                        paddingBottom: "inherit",
+                        backgroundColor: "#FFF",
+                        justifyContent: "center",
+                        borderRadius: "0px",
                     },
                 });
                 break;

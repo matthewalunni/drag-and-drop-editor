@@ -3,6 +3,7 @@ import EditorSideBar from './EditorSidebar';
 import EditingPage from '../editor/EditingPage';
 import NavigationMenu from './menus/NavigationMenu';
 import HeadingMenu from './menus/HeadingMenu';
+import ImageMenu from './menus/ImageMenu';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
@@ -108,20 +109,15 @@ class Editor extends Component {
             }
             case "Image": {
                 return (
-                    <Draggable>
-                        <Toast
-                            className="editor-menu"
-                            onClose={() => { this.setState({ json: "", activePageSection: -1 }) }}>
-                            <Toast.Header>
-                                <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
-                                <strong className="mr-auto">Image</strong>
-                                <small>Edit Image</small>
-                            </Toast.Header>
-                            <Toast.Body>
-                                Hello, world! This is a toast message.
-                            </Toast.Body>
-                        </Toast>
-                    </Draggable>
+                    <ImageMenu
+                        onClose={() => { this.setState({ json: "", activePageSection: -1 }) }}
+                        jsonEntry={this.state.json}
+                        editJson={this.editJson}
+                        editJsonArray={this.editJsonArray}
+                        addToJsonArray={this.addToJsonArray}
+                        selected={this.state.activePageSection}
+                        deleteSection={this.deleteSection}
+                    />
                 );
             }
             case "Button": {
